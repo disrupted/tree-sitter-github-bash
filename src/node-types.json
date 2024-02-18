@@ -62,6 +62,10 @@
         "named": true
       },
       {
+        "type": "github_variable",
+        "named": true
+      },
+      {
         "type": "number",
         "named": true
       },
@@ -1332,6 +1336,11 @@
     }
   },
   {
+    "type": "github_variable",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "heredoc_body",
     "named": true,
     "fields": {},
@@ -2302,6 +2311,10 @@
     "named": false
   },
   {
+    "type": "${{",
+    "named": false
+  },
+  {
     "type": "%",
     "named": false
   },
@@ -2791,6 +2804,10 @@
   },
   {
     "type": "}",
+    "named": false
+  },
+  {
+    "type": "}}",
     "named": false
   },
   {

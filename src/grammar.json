@@ -1,5 +1,5 @@
 {
-  "name": "bash",
+  "name": "githubbash",
   "word": "word",
   "rules": {
     "program": {
@@ -1936,6 +1936,23 @@
         }
       ]
     },
+    "github_variable": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "${{"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[-_.\\w\\W]+"
+        },
+        {
+          "type": "STRING",
+          "value": "}}"
+        }
+      ]
+    },
     "pipeline": {
       "type": "PREC_RIGHT",
       "value": 0,
@@ -2333,6 +2350,14 @@
                         },
                         "named": false,
                         "value": "$"
+                      }
+                    },
+                    {
+                      "type": "FIELD",
+                      "name": "argument",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "github_variable"
                       }
                     },
                     {
@@ -3962,6 +3987,10 @@
         {
           "type": "SYMBOL",
           "name": "brace_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "github_variable"
         }
       ]
     },
@@ -7133,3 +7162,4 @@
     "_primary_expression"
   ]
 }
+

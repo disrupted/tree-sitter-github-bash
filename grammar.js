@@ -46,7 +46,7 @@ const PREC = {
 };
 
 module.exports = grammar({
-  name: 'bash',
+  name: 'githubbash',
 
   conflicts: $ => [
     [$._expression, $.command_name],
@@ -401,6 +401,12 @@ module.exports = grammar({
       ')',
     ),
 
+    github_variable: $ => seq(
+      '${{',
+      /[-_.\w\W]+/,
+      '}}',
+    ),
+
     pipeline: $ => prec.right(seq(
       $._statement_not_pipeline,
       repeat1(seq(
@@ -477,6 +483,7 @@ module.exports = grammar({
         repeat(choice(
           field('argument', $._literal),
           field('argument', alias($._bare_dollar, '$')),
+          field('argument', $.github_variable),
           field('argument', seq(
             choice('=~', '=='),
             choice($._literal, $.regex),
@@ -701,6 +708,7 @@ module.exports = grammar({
       $.process_substitution,
       $.arithmetic_expansion,
       $.brace_expression,
+      $.github_variable,
     ),
 
     arithmetic_expansion: $ => choice(
